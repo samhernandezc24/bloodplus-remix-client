@@ -1,7 +1,10 @@
 import cn from 'classnames'
+import {ButtonLink} from './button'
 
 const bannerText = 'BloodPlus v0.1.0 🩸'
 const bannerLegend = 'Para poder acceder a la aplicación necesitas registrarte.'
+const bannerLink = '/empezando'
+const bannerLinkText = 'Regístrate ahora'
 
 export default function SocialBanner() {
   return (
@@ -14,6 +17,14 @@ export default function SocialBanner() {
         <strong>{bannerText}</strong>
         <span className="mx-2 font-normal">{bannerLegend}</span>
       </p>
+      <ButtonLink
+        className="ml-0 sm:ml-1"
+        href={bannerLink}
+        type="primary"
+        size="md"
+      >
+        {bannerLinkText}
+      </ButtonLink>
     </div>
   )
 }
