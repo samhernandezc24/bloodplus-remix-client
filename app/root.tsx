@@ -14,7 +14,7 @@ export default function App() {
         <title>BloodPlus: ¡Dona vida!</title>
         <Links />
       </head>
-      <body className="bg-wash text-lg font-medium leading-base text-secondary antialiased">
+      <body className="bg-wash font-text text-lg font-medium leading-base text-secondary antialiased">
         <Outlet />
         <Scripts />
         <LiveReload />

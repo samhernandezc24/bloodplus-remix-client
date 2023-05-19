@@ -49,6 +49,18 @@ export default {
       opacity: {
         8: '0.08',
       },
+      fontFamily: {
+        display: [
+          'Optimistic Display',
+          '-apple-system',
+          ...defaultTheme.fontFamily.sans,
+        ],
+        text: [
+          'Optimistic Text',
+          '-apple-system',
+          ...defaultTheme.fontFamily.sans,
+        ],
+      },
       lineHeight: {
         base: '30px',
         large: '38px',
