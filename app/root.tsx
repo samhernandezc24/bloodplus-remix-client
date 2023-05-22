@@ -40,7 +40,6 @@ export default function App() {
   return (
     <html className="h-full" lang="en">
       <head>
-        {/** Todas las metaexportaciones de todas las rutas irán aquí */}
         <meta charSet="utf-8" />
         <Meta />
         <Links />
@@ -61,6 +60,7 @@ function ErrorDoc({children}: {children: React.ReactNode}) {
     <html className="h-full" lang="en">
       <head>
         <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Oops...</title>
         <Links />
       </head>
@@ -88,7 +88,7 @@ export function ErrorBoundary() {
             <div className="pl-0">
               <div className="px-5 pt-3.5 sm:px-12">
                 <div className="ml-0 max-w-4xl 2xl:mx-auto">
-                  <h1 className="textprimary mt-0 font-display text-5xl font-bold leading-tight">
+                  <h1 className="-mx-.5 mt-0 font-display text-5xl font-bold leading-tight text-primary">
                     No Encontrado
                   </h1>
                 </div>
@@ -121,48 +121,53 @@ export function ErrorBoundary() {
         </main>
       </ErrorDoc>
     )
-  }
-
-  const errorMessage =
-    error instanceof Error ? error.message : 'Error desconocido'
-  return (
-    <ErrorDoc>
-      <main className="isolate flex h-screen min-w-0 items-center justify-center">
-        <article className="break-words font-normal text-primary">
-          <div className="pl-0">
-            <div className="px-5 pt-3.5 sm:px-12">
-              <div className="ml-0 max-w-4xl 2xl:mx-auto">
-                <h1 className="textprimary mt-0 font-display text-5xl font-bold leading-tight">
-                  Error de Aplicación
-                </h1>
-              </div>
-            </div>
-            <div className="px-5 sm:px-12">
-              <div className="mx-auto max-w-7xl">
+  } else if (error instanceof Error) {
+    return (
+      <ErrorDoc>
+        <main className="isolate flex min-h-screen min-w-0 items-center justify-center">
+          <article className="break-words font-normal text-primary">
+            <div className="pl-0">
+              <div className="px-5 pt-3.5 sm:px-12">
                 <div className="ml-0 max-w-4xl 2xl:mx-auto">
-                  <div className="font-display text-xl leading-relaxed text-primary">
-                    <p className="my-4 whitespace-pre-wrap">
-                      {errorMessage} - Oh no, algo salió muy mal.
-                    </p>
-                    <p className="my-4 whitespace-pre-wrap">
-                      "{location.pathname}" al parecer no está funcionando como
-                      debería. Lo sentimos 😥.
-                    </p>
-                    <ButtonLink
-                      to="/"
-                      type="primary"
-                      size="md"
-                      label="Regresar al Inicio"
-                    >
-                      Regresar al Inicio
-                    </ButtonLink>
+                  <h1 className="mt-0 font-display text-5xl font-bold leading-tight text-primary">
+                    Error de Aplicación
+                  </h1>
+                </div>
+              </div>
+              <div className="px-5 sm:px-12">
+                <div className="mx-auto max-w-7xl">
+                  <div className="ml-0 max-w-4xl 2xl:mx-auto">
+                    <div className="font-display text-xl leading-relaxed text-primary">
+                      <p className="my-4 whitespace-pre-wrap">
+                        Oh no, algo no salió bien - {error.message}
+                      </p>
+                      {/*<p className="my-4 text-sm">
+                        <pre className="whitespace-pre-wrap">
+                          Stack trace es: {error.stack}
+                        </pre>
+                      </p>*/}
+                      <p className="my-4 whitespace-pre-wrap">
+                        "{location.pathname}" al parecer no está funcionando
+                        como debería. Lo sentimos 😥.
+                      </p>
+                      <ButtonLink
+                        to="/"
+                        type="primary"
+                        size="md"
+                        label="Regresar al Inicio"
+                      >
+                        Regresar al Inicio
+                      </ButtonLink>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </article>
-      </main>
-    </ErrorDoc>
-  )
+          </article>
+        </main>
+      </ErrorDoc>
+    )
+  } else {
+    return <h1>Error desconocido</h1>
+  }
 }
