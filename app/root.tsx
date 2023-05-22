@@ -107,7 +107,7 @@ export function ErrorBoundary() {
                       <ButtonLink
                         to="/"
                         type="primary"
-                        size="md"
+                        size="lg"
                         label="Regresar al Inicio"
                       >
                         Regresar al Inicio
@@ -153,7 +153,7 @@ export function ErrorBoundary() {
                       <ButtonLink
                         to="/"
                         type="primary"
-                        size="md"
+                        size="lg"
                         label="Regresar al Inicio"
                       >
                         Regresar al Inicio
