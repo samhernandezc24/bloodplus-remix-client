@@ -402,6 +402,16 @@
     .text-8xl {
       font-size: 6rem;
     }
+
+    .form-label {
+      @apply block select-none text-base font-semibold text-secondary;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      @apply relative block w-full rounded-md p-2 text-left leading-normal text-primary shadow-secondary-button-stroke focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-400 sm:text-base;
+    }
   }
 
   details {
