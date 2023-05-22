@@ -1,4 +1,9 @@
-import type {LinksFunction, V2_MetaFunction} from '@remix-run/node'
+import type {
+  DataFunctionArgs,
+  LinksFunction,
+  SerializeFrom,
+  V2_MetaFunction,
+} from '@remix-run/node'
 import {
   Links,
   LiveReload,
@@ -14,6 +19,11 @@ import {
 import {useNonce} from './utils/nonce-provider'
 import stylesUrl from '~/styles/tailwind.css'
 import {ButtonLink} from './components/button'
+import {NRHandle} from 'types'
+
+export const handle: NRHandle & {id: string} = {
+  id: 'root',
+}
 
 export const links: LinksFunction = () => [{rel: 'stylesheet', href: stylesUrl}]
 
@@ -33,6 +43,13 @@ export const meta: V2_MetaFunction = () => {
       content: viewport,
     },
   ]
+}
+
+export type LoaderData = SerializeFrom<typeof loader>
+
+async function loader({request}: DataFunctionArgs) {
+  const timings = {}
+  //const session = await getSession(request)
 }
 
 export default function App() {

@@ -54,7 +54,7 @@ export default function AccesoSolicitantesRoute() {
           </div>
           <div>
             <ButtonLink
-              to="/"
+              to="/solicitantes"
               className="mt-1 w-full justify-center"
               type="primary"
               size="md"

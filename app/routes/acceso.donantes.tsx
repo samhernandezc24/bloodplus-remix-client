@@ -54,7 +54,7 @@ export default function AccesoDonantesRoute() {
           </div>
           <div>
             <ButtonLink
-              to="/"
+              to="/donantes"
               className="mt-1 w-full justify-center"
               type="primary"
               size="md"
