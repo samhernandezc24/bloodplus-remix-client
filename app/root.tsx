@@ -40,6 +40,7 @@ export default function App() {
   return (
     <html className="h-full" lang="en">
       <head>
+        {/** Todas las metaexportaciones de todas las rutas irán aquí */}
         <meta charSet="utf-8" />
         <Meta />
         <Links />
