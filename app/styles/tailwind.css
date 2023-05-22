@@ -436,4 +436,40 @@
   summary::-webkit-details-marker {
     display: none;
   }
+
+  /*
+   * Esperemos que cuando scrollbar-color aterrice en todas partes
+   * (y no sólo en FF), seremos capaces de mantener sólo esto.
+   */
+   html .no-bg-scrollbar {
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  }
+  /*
+   * Hasta entonces, tenemos ... esto.
+   * Si vas a cambiar esto, asegúrate de haber probado:
+   * - Diferentes navegadores (Chrome, Safari, FF)
+   * - Modos oscuro y claro
+   * - Configuración de la barra de desplazamiento del sistema ("siempre activada" vs "al desplazarse")
+   * - El cambio entre modos nunca debe hacer saltar la anchura
+   * - Cuando se interactúa con una barra lateral, siempre debe estar visible.
+   * - Para cada combinación, probar barra lateral overflow y no overflow
+   * - Me he pasado horas eligiendo estos así que no espero menos diligencia por tu parte.
+   */
+  html .no-bg-scrollbar::-webkit-scrollbar,
+  html .no-bg-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  html .no-bg-scrollbar:hover::-webkit-scrollbar-thumb,
+  html .no-bg-scrollbar:focus::-webkit-scrollbar-thumb,
+  html .no-bg-scrollbar:focus-within::-webkit-scrollbar-thumb,
+  html .no-bg-scrollbar:active::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 4px solid transparent;
+    background-clip: content-box;
+    border-radius: 10px;
+  }
+  html .no-bg-scrollbar::-webkit-scrollbar-thumb:hover,
+  html .no-bg-scrollbar::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, 0.35) !important;
+  }
 }
