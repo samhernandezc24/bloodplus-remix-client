@@ -1,7 +1,20 @@
-import {Link} from '@remix-run/react'
+import {json, redirect} from '@remix-run/node'
+import {Form, Link, useActionData} from '@remix-run/react'
 import {ButtonLink} from '~/components/button'
+import {login} from '~/services/auth.server'
+
+export let action = async ({request}: any) => {
+  let formData = await request.formData()
+  let email = formData.get('email')
+  let password = formData.get('password')
+
+  let {errors, redirector} = await login({request, email, password})
+
+  return errors || redirector
+}
 
 export default function AccesoSolicitantesRoute() {
+  let errors = useActionData()
   return (
     <>
       <h1 className="-mx-.5 break-words text-3xl font-bold leading-tight text-primary md:text-4xl">
@@ -18,7 +31,7 @@ export default function AccesoSolicitantesRoute() {
         .
       </p>
       <div className="my-4">
-        <form className="space-y-6" action="#" method="POST">
+        <Form method="POST" autoComplete="off">
           <div>
             <label htmlFor="email" className="form-label">
               Correo electrónico
@@ -62,7 +75,7 @@ export default function AccesoSolicitantesRoute() {
               Iniciar sesión
             </ButtonLink>
           </div>
-        </form>
+        </Form>
       </div>
     </>
   )
