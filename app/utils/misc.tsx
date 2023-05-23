@@ -1,5 +1,15 @@
 import {Link, type LinkProps} from '@remix-run/react'
 import * as React from 'react'
+import {OptionalTheme, Theme} from '~/types'
+
+const themes: Array<Theme> = ['RED', 'BLUE', 'YELLOW']
+export const optionalThemes: Array<OptionalTheme> = [...themes, 'UNKNOWN']
+const isTheme = (theme?: string): theme is Theme =>
+  themes.includes(theme as Theme)
+const getTheme = (theme?: string): Theme | null =>
+  isTheme(theme) ? theme : null
+const getOptionalTheme = (theme?: string): OptionalTheme =>
+  isTheme(theme) ? theme : 'UNKNOWN'
 
 type AnchorProps = React.DetailedHTMLProps<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -57,4 +67,5 @@ const AnchorOrLink = React.forwardRef<
   }
 })
 
-export {AnchorOrLink}
+export {AnchorOrLink, themes, isTheme, getTheme, getOptionalTheme}
+export type {OptionalTheme}
