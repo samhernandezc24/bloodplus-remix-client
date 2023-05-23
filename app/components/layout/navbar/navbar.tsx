@@ -3,13 +3,18 @@ import {useEffect, useRef, useState} from 'react'
 import * as React from 'react'
 import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock'
 import cn from 'classnames'
-import {IconClose, IconHamburger, IconSearch} from '~/components/icons'
+import {
+  IconClose,
+  IconHamburger,
+  IconMessage,
+  IconNote,
+  IconSearch,
+  IconUser,
+} from '~/components/icons'
 
 const LINKS = [
   {name: 'Precios', to: '/precios'},
-  {name: 'Chat', to: '/chat'},
-  {name: 'Solicitudes', to: '/solicitudes'},
-  {name: 'Perfil', to: '/me'},
+  {name: 'Ayuda', to: '/ayuda'},
 ]
 
 const MOBILE_LINKS = [{name: 'Inicio', to: '/solicitantes'}, ...LINKS]
@@ -170,7 +175,28 @@ function Navbar() {
                   </button>
                 </div>
                 <div className="flex">
-                  <button></button>
+                  <Link
+                    to="/chat"
+                    className="flex h-12 w-12 items-center justify-center rounded-full outline-link transition-transform hover:bg-primary/5 active:scale-95"
+                  >
+                    <IconMessage />
+                  </Link>
+                </div>
+                <div className="flex">
+                  <Link
+                    to="/solicitudes"
+                    className="flex h-12 w-12 items-center justify-center rounded-full outline-link transition-transform hover:bg-primary/5 active:scale-95"
+                  >
+                    <IconNote />
+                  </Link>
+                </div>
+                <div className="flex">
+                  <Link
+                    to="/perfil/me"
+                    className="flex h-12 w-12 items-center justify-center rounded-full outline-link transition-transform hover:bg-primary/5 active:scale-95"
+                  >
+                    <IconUser />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -195,7 +221,7 @@ function Navbar() {
               >
                 <React.Suspense fallback={null}>
                   <div className="flex flex-row overflow-x-auto pl-3 text-base font-bold text-secondary xs:gap-0.5 xs:pl-5 xs:text-base lg:hidden">
-                    {LINKS.map(link => (
+                    {MOBILE_LINKS.map(link => (
                       <NavLink to={link.to} key={link.to}>
                         {link.name}
                       </NavLink>
@@ -207,26 +233,26 @@ function Navbar() {
                   />
                   <ul>
                     <h3 className="mb-1 ml-5 text-sm font-bold text-tertiary">
-                      EMPEZANDO
+                      ACCESIBILIDAD
                     </h3>
                     <li>
                       <Link
-                        title="Iniciar Sesión"
+                        title="Mi Perfil"
                         target=""
                         className="relative flex w-full items-center justify-between rounded-none p-2 pl-5 pr-2 text-left text-base font-bold text-primary hover:bg-gray-5 lg:rounded-r-2xl"
-                        to="/acceso"
+                        to="/perfil/me"
                       >
-                        <span className="">Iniciar Sesión</span>
+                        <span className="">Mi Perfil</span>
                       </Link>
                     </li>
                     <li>
                       <Link
-                        title="Registrarse"
+                        title="Cerrar Sesión"
                         target=""
                         className="relative flex w-full items-center justify-between rounded-none p-2 pl-5 pr-2 text-left text-base font-bold text-primary hover:bg-gray-5 lg:rounded-r-2xl"
-                        to="/empezando"
+                        to="/logout"
                       >
-                        <span className="">Registrarse</span>
+                        <span className="">Cerrar Sesión</span>
                       </Link>
                     </li>
                   </ul>

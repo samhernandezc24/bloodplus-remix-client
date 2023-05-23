@@ -3,10 +3,10 @@ import GoogleMapReact from 'google-map-react'
 export default function Map() {
   const defaultProps = {
     center: {
-      lat: 10.99835602,
-      lng: 77.01502627,
+      lat: 18.023183714063215,
+      lng: -92.90362957485125,
     },
-    zoom: 11,
+    zoom: 12,
   }
   return (
     // Important! Always set the container height explicitly
