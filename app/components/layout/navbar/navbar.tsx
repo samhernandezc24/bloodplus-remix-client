@@ -3,15 +3,13 @@ import {useEffect, useRef, useState} from 'react'
 import * as React from 'react'
 import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock'
 import cn from 'classnames'
-import {IconClose, IconHamburger} from '~/components/icons'
+import {IconClose, IconHamburger, IconSearch} from '~/components/icons'
 
 const LINKS = [
-  {name: 'Donadores', to: '/donadores'},
   {name: 'Precios', to: '/precios'},
-  {name: 'FAQ', to: '/faq'},
-  {name: '', to: '/chat'},
-  {name: '', to: '/solicitudes'},
-  {name: '', to: '/me'},
+  {name: 'Chat', to: '/chat'},
+  {name: 'Solicitudes', to: '/solicitudes'},
+  {name: 'Perfil', to: '/me'},
 ]
 
 const MOBILE_LINKS = [{name: 'Inicio', to: '/solicitantes'}, ...LINKS]
@@ -36,18 +34,6 @@ function NavLink({
         {...rest}
       />
     </div>
-  )
-}
-
-function Kbd(props: {children?: React.ReactNode; wide?: boolean}) {
-  const {wide, ...rest} = props
-  const width = wide ? 'w-10' : 'w-5'
-
-  return (
-    <kbd
-      className={`${width} dark:bg-wash-dark mr-1 inline-flex h-5 items-center justify-center rounded-md border border-transparent bg-wash p-0 text-center align-middle text-xs text-gray-30`}
-      {...rest}
-    />
   )
 }
 
@@ -108,17 +94,6 @@ function Navbar() {
     return () => observer.disconnect()
   }, [])
 
-  const [showSearch, setShowSearch] = useState(false)
-  const onOpenSearch = React.useCallback(() => {
-    React.startTransition(() => {
-      setShowSearch(true)
-    })
-  }, [])
-
-  const onCloseSearch = React.useCallback(() => {
-    setShowSearch(false)
-  }, [])
-
   return (
     <>
       <div ref={scrollDetectorRef} />
@@ -152,7 +127,7 @@ function Navbar() {
               </button>
               <div className="flex self-center 3xl:flex-1">
                 <Link
-                  to="/"
+                  to="/solicitantes"
                   className={`relative inline-flex items-center gap-2 overflow-hidden whitespace-nowrap rounded-full p-1 text-lg font-normal text-primary outline-link transition-transform active:scale-95 3xl:rounded-xl`}
                 >
                   <img
@@ -164,7 +139,18 @@ function Navbar() {
                 </Link>
               </div>
             </div>
-            <div className="hidden w-full flex-1 items-center justify-center text-base md:flex 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
+            <div className="hidden w-full flex-1 items-center justify-center md:flex 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
+              <button
+                type="button"
+                className={cn(
+                  'betterhover:hover:bg-opacity-80 pointer relative flex h-10 w-full items-center rounded-full bg-gray-30/20 py-1 pl-4 pr-1 text-left align-middle text-base text-gray-30 outline-none focus:outline-link 3xl:mx-0 3xl:w-[56rem]'
+                )}
+              >
+                <IconSearch className="group-betterhover:hover:text-gray-70 mr-3 shrink-0 align-middle text-gray-30" />
+                Buscar
+              </button>
+            </div>
+            <div className="flex flex-row items-center justify-center gap-1.5 text-base 3xl:flex-1 3xl:justify-end">
               <div className="mx-2.5 hidden gap-1.5 lg:flex">
                 {LINKS.map(link => (
                   <NavLink key={link.to} to={link.to}>
@@ -172,33 +158,19 @@ function Navbar() {
                   </NavLink>
                 ))}
               </div>
-            </div>
-            <div className="flex flex-row items-center justify-center gap-1.5 text-base 3xl:flex-1 3xl:justify-end">
-              <div className="mx-2.5 hidden gap-1.5 lg:flex">
-                <NavLink to="/acceso">Iniciar sesión</NavLink>
-              </div>
               <div className="flex w-full md:hidden" />
               <div className="flex items-center -space-x-2.5 xs:space-x-0">
                 <div className="flex md:hidden">
-                  <Link
-                    to="/acceso"
+                  <button
+                    aria-label="Buscar"
+                    type="button"
                     className="flex h-12 w-12 items-center justify-center rounded-full outline-link transition-transform hover:bg-secondary-button active:scale-95 md:hidden"
                   >
-                    wefwef
-                  </Link>
+                    <IconSearch className="h-5 w-5 align-middle" />
+                  </button>
                 </div>
-                <div className="flex"></div>
                 <div className="flex">
-                  <a
-                    href="https://www.buymeacoffee.com/"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="Compráme un cafecito ☕"
-                    className="flex h-12 w-12 items-center justify-center rounded-full outline-link transition-transform hover:bg-primary/5 active:scale-95"
-                    title="Compráme un cafecito ☕"
-                  >
-                    werferf
-                  </a>
+                  <button></button>
                 </div>
               </div>
             </div>
@@ -223,7 +195,7 @@ function Navbar() {
               >
                 <React.Suspense fallback={null}>
                   <div className="flex flex-row overflow-x-auto pl-3 text-base font-bold text-secondary xs:gap-0.5 xs:pl-5 xs:text-base lg:hidden">
-                    {MOBILE_LINKS.map(link => (
+                    {LINKS.map(link => (
                       <NavLink to={link.to} key={link.to}>
                         {link.name}
                       </NavLink>

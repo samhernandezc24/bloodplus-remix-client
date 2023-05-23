@@ -2,7 +2,7 @@ import {Suspense} from 'react'
 import {TopNav} from '~/components/layout/top-nav'
 import SocialBanner from '~/components/social-banner'
 
-export default function DonadoresRoute() {
+export default function InformacionRoute() {
   return (
     <>
       <SocialBanner />

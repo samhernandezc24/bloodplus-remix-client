@@ -5,7 +5,7 @@ import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock'
 import {IconClose, IconHamburger} from '~/components/icons'
 
 const LINKS = [
-  {name: 'Donandores', to: '/donadores'},
+  {name: 'Información', to: '/informacion'},
   {name: 'Precios', to: '/precios'},
   {name: 'FAQ', to: '/faq'},
 ]
