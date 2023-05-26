@@ -13,8 +13,8 @@ import {
 } from '~/components/icons'
 
 const LINKS = [
-  {name: 'Precios', to: '/precios'},
-  {name: 'Ayuda', to: '/ayuda'},
+  {name: 'Precios', to: '/solicitantes/precios'},
+  {name: 'Ayuda', to: '/solicitantes/ayuda'},
 ]
 
 const MOBILE_LINKS = [{name: 'Inicio', to: '/solicitantes'}, ...LINKS]
@@ -39,6 +39,33 @@ function NavLink({
         {...rest}
       />
     </div>
+  )
+}
+
+function NavLinkIcon({
+  to,
+  children,
+  ...rest
+}: Omit<Parameters<typeof Link>['0'], 'to'> & {
+  to: string
+  children: React.ReactNode
+}) {
+  const location = useLocation()
+  const isActive =
+    to === location.pathname || location.pathname.startsWith(`${to}/`)
+
+  return (
+    <Link
+      to={to}
+      className={cn(
+        'flex h-12 w-12 items-center justify-center rounded-full outline-link transition-transform active:scale-95',
+        !isActive && 'hover:bg-primary/5',
+        isActive && 'bg-highlight text-link'
+      )}
+      {...rest}
+    >
+      {children}
+    </Link>
   )
 }
 
@@ -175,28 +202,19 @@ function Navbar() {
                   </button>
                 </div>
                 <div className="flex">
-                  <Link
-                    to="/chat"
-                    className="flex h-12 w-12 items-center justify-center rounded-full outline-link transition-transform hover:bg-primary/5 active:scale-95"
-                  >
+                  <NavLinkIcon to="/solicitantes/chat">
                     <IconMessage />
-                  </Link>
+                  </NavLinkIcon>
                 </div>
                 <div className="flex">
-                  <Link
-                    to="/solicitudes"
-                    className="flex h-12 w-12 items-center justify-center rounded-full outline-link transition-transform hover:bg-primary/5 active:scale-95"
-                  >
+                  <NavLinkIcon to="/solicitantes/solicitudes">
                     <IconNote />
-                  </Link>
+                  </NavLinkIcon>
                 </div>
                 <div className="flex">
-                  <Link
-                    to="/perfil/me"
-                    className="flex h-12 w-12 items-center justify-center rounded-full outline-link transition-transform hover:bg-primary/5 active:scale-95"
-                  >
+                  <NavLinkIcon to="/solicitantes/me">
                     <IconUser />
-                  </Link>
+                  </NavLinkIcon>
                 </div>
               </div>
             </div>
@@ -240,7 +258,7 @@ function Navbar() {
                         title="Mi Perfil"
                         target=""
                         className="relative flex w-full items-center justify-between rounded-none p-2 pl-5 pr-2 text-left text-base font-bold text-primary hover:bg-gray-5 lg:rounded-r-2xl"
-                        to="/perfil/me"
+                        to="/solicitantes/me"
                       >
                         <span className="">Mi Perfil</span>
                       </Link>

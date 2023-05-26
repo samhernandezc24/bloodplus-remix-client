@@ -1,4 +1,4 @@
-import {Outlet, useLocation, useNavigation} from '@remix-run/react'
+import {Outlet, useLocation} from '@remix-run/react'
 import {Suspense} from 'react'
 import Map from '~/components/layout/map/map'
 import {Navbar} from '~/components/layout/navbar/navbar'
@@ -41,6 +41,8 @@ export default function SolicitantesRoute() {
       <Navbar />
 
       {content}
+
+      <Outlet />
     </>
   )
 }

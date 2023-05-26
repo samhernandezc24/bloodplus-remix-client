@@ -95,6 +95,8 @@ function ErrorDoc({children}: {children: React.ReactNode}) {
 export function ErrorBoundary() {
   const error = useRouteError()
   const location = useLocation()
+  const isSolicitantesRoute = location.pathname.startsWith('/solicitantes')
+  console.log(isSolicitantesRoute)
   console.error(error)
 
   if (isRouteErrorResponse(error)) {
@@ -122,7 +124,7 @@ export function ErrorBoundary() {
                         sentimos 😶.
                       </p>
                       <ButtonLink
-                        to="/"
+                        to={isSolicitantesRoute ? '/solicitantes' : '/'}
                         type="primary"
                         size="lg"
                         label="Regresar al Inicio"
@@ -168,7 +170,7 @@ export function ErrorBoundary() {
                         como debería. Lo sentimos 😥.
                       </p>
                       <ButtonLink
-                        to="/"
+                        to={isSolicitantesRoute ? '/solicitantes' : '/'}
                         type="primary"
                         size="lg"
                         label="Regresar al Inicio"
