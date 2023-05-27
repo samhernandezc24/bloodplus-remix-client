@@ -28,8 +28,9 @@ export default function PreciosRoute() {
                   <div className="ml-0 max-w-4xl 2xl:mx-auto">
                     <div className="text-xl leading-relaxed text-primary">
                       <p className="my-4 whitespace-pre-wrap">
-                        Desde una sola solicitud. Todas las cuentas de solicitante de
-                        donador incluye uso de la búsqueda optimizada por mapas.
+                        Desde una sola solicitud. Todas las cuentas de
+                        solicitante de donador incluye uso de la búsqueda
+                        optimizada por mapas.
                       </p>
                       <p className="my-4 whitespace-pre-wrap">
                         Si te suscribes a un plan de BloodPlus, aceptas las
@@ -121,7 +122,9 @@ export default function PreciosRoute() {
                             Elige esta opción para uso personal.
                           </p>
                           <div className="my-8 flex items-baseline justify-center">
-                            <span className="mr-2 text-5xl font-bold">$100</span>
+                            <span className="mr-2 text-5xl font-bold">
+                              $100
+                            </span>
                             <span className="text-secondary">/mensual</span>
                           </div>
                           <ul role="list" className="mb-8 space-y-4 text-left">
