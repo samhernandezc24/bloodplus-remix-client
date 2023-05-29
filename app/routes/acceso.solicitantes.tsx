@@ -31,7 +31,7 @@ export default function AccesoSolicitantesRoute() {
         .
       </p>
       <div className="my-4">
-        <Form method="POST" autoComplete="off">
+        <Form className="space-y-6" method="POST" autoComplete="off">
           <div>
             <label htmlFor="email" className="form-label">
               Correo electrónico

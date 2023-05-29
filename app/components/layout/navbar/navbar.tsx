@@ -11,6 +11,7 @@ import {
   IconSearch,
   IconUser,
 } from '~/components/icons'
+import {Autocomplete} from '@react-google-maps/api'
 
 const LINKS = [
   {name: 'Precios', to: '/solicitantes/precios'},
@@ -24,8 +25,9 @@ function NavLink({
   ...rest
 }: Omit<Parameters<typeof Link>['0'], 'to'> & {to: string}) {
   const location = useLocation()
-  const isActive =
-    to === location.pathname || location.pathname.startsWith(`${to}/`)
+  /*const isActive =
+    to === location.pathname || location.pathname.startsWith(`${to}/`)*/
+  const isActive = to === location.pathname
 
   return (
     <div className="flex flex-auto sm:flex-1">
@@ -172,15 +174,16 @@ function Navbar() {
               </div>
             </div>
             <div className="hidden w-full flex-1 items-center justify-center md:flex 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
-              <button
-                type="button"
-                className={cn(
-                  'betterhover:hover:bg-opacity-80 pointer relative flex h-10 w-full items-center rounded-full bg-gray-30/20 py-1 pl-4 pr-1 text-left align-middle text-base text-gray-30 outline-none focus:outline-link 3xl:mx-0 3xl:w-[56rem]'
-                )}
-              >
-                <IconSearch className="group-betterhover:hover:text-gray-70 mr-3 shrink-0 align-middle text-gray-30" />
-                Buscar
-              </button>
+              {/*<Autocomplete>
+                <div
+                  className={cn(
+                    'betterhover:hover:bg-opacity-80 pointer relative flex h-10 w-full items-center rounded-full bg-gray-30/20 py-1 pl-4 pr-1 text-left align-middle text-base text-gray-30 outline-none focus:outline-link 3xl:mx-0 3xl:w-[56rem]'
+                  )}
+                >
+                  <IconSearch className="group-betterhover:hover:text-gray-70 mr-3 shrink-0 align-middle text-gray-30" />
+                  Buscar
+                </div>
+                  </Autocomplete>*/}
             </div>
             <div className="flex flex-row items-center justify-center gap-1.5 text-base 3xl:flex-1 3xl:justify-end">
               <div className="mx-2.5 hidden gap-1.5 lg:flex">
