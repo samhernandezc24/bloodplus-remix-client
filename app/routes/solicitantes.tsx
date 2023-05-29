@@ -27,6 +27,8 @@ export default function SolicitantesRoute() {
         </Suspense>
       </div>
     )
+  } else {
+    content = <Outlet />
   }
 
   let hasColumns = true
@@ -41,8 +43,6 @@ export default function SolicitantesRoute() {
       <Navbar />
 
       {content}
-
-      <Outlet />
     </>
   )
 }
