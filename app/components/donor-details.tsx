@@ -53,7 +53,7 @@ const DonorDetails = ({donor, selected}: any) => {
       <CardActions>
         <Button
           size="small"
-          color="primary"
+          color="secondary"
           onClick={() => window.open(donor.request_uri, '_blank')}
         >
           Enviar Solicitud
