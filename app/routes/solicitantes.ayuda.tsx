@@ -8,11 +8,11 @@ export default function SolicitantesAyudaRoute() {
   const title = '¿Tienes alguna pregunta?'
   return (
     <>
-      <div className="">
+      <div className="mx-auto max-w-5xl px-0 lg:px-4">
         <PageHeading title={title} />
       </div>
       <div className="px-5 sm:px-12">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-7xl lg:flex lg:flex-col lg:items-center">
           <div className="ml-0 max-w-4xl 2xl:mx-auto">
             <div className="font-display text-xl leading-relaxed text-primary">
               <P>

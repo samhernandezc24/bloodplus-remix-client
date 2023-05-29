@@ -128,6 +128,14 @@ function Navbar() {
     return () => observer.disconnect()
   }, [])
 
+  const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null)
+
+  const handlePlaceSelect = () => {
+    const place = autocompleteRef.current?.getPlace()
+
+    console.log('Lugar seleccionado:', place)
+  }
+
   return (
     <>
       <div ref={scrollDetectorRef} />
@@ -174,7 +182,12 @@ function Navbar() {
               </div>
             </div>
             <div className="hidden w-full flex-1 items-center justify-center md:flex 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
-              {/*<Autocomplete>
+              {/*<Autocomplete
+                onLoad={autocomplete => {
+                  autocompleteRef.current = autocomplete
+                }}
+                onPlaceChanged={handlePlaceSelect}
+              >
                 <div
                   className={cn(
                     'betterhover:hover:bg-opacity-80 pointer relative flex h-10 w-full items-center rounded-full bg-gray-30/20 py-1 pl-4 pr-1 text-left align-middle text-base text-gray-30 outline-none focus:outline-link 3xl:mx-0 3xl:w-[56rem]'
