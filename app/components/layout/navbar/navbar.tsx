@@ -71,7 +71,7 @@ function NavLinkIcon({
   )
 }
 
-function Navbar() {
+function Navbar({onPlaceChanged, onLoad}: any) {
   const [isOpen, setIsOpen] = useState(false)
   const scrollParentRef = useRef<HTMLDivElement>(null)
   const navigation = useNavigation()
@@ -128,14 +128,6 @@ function Navbar() {
     return () => observer.disconnect()
   }, [])
 
-  const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null)
-
-  const handlePlaceSelect = () => {
-    const place = autocompleteRef.current?.getPlace()
-
-    console.log('Lugar seleccionado:', place)
-  }
-
   return (
     <>
       <div ref={scrollDetectorRef} />
@@ -182,21 +174,19 @@ function Navbar() {
               </div>
             </div>
             <div className="hidden w-full flex-1 items-center justify-center md:flex 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
-              {/*<Autocomplete
-                onLoad={autocomplete => {
-                  autocompleteRef.current = autocomplete
-                }}
-                onPlaceChanged={handlePlaceSelect}
+              {/*<Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>*/}
+              <div
+                className={cn(
+                  'betterhover:hover:bg-opacity-80 pointer relative flex h-10 w-full items-center rounded-full bg-gray-30/20 py-1 pl-4 pr-1 text-left align-middle text-base text-gray-30 outline-none focus:outline-link 3xl:mx-0 3xl:w-[56rem]'
+                )}
               >
-                <div
-                  className={cn(
-                    'betterhover:hover:bg-opacity-80 pointer relative flex h-10 w-full items-center rounded-full bg-gray-30/20 py-1 pl-4 pr-1 text-left align-middle text-base text-gray-30 outline-none focus:outline-link 3xl:mx-0 3xl:w-[56rem]'
-                  )}
-                >
-                  <IconSearch className="group-betterhover:hover:text-gray-70 mr-3 shrink-0 align-middle text-gray-30" />
-                  Buscar
-                </div>
-                  </Autocomplete>*/}
+                <IconSearch className="group-betterhover:hover:text-gray-70 mr-3 shrink-0 align-middle text-gray-30" />
+                <input
+                  className="w-full bg-transparent text-primary outline-none"
+                  placeholder="Buscar"
+                />
+              </div>
+              {/*</Autocomplete>*/}
             </div>
             <div className="flex flex-row items-center justify-center gap-1.5 text-base 3xl:flex-1 3xl:justify-end">
               <div className="mx-2.5 hidden gap-1.5 lg:flex">

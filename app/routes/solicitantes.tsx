@@ -1,5 +1,5 @@
 import {Outlet, useLocation} from '@remix-run/react'
-import {Suspense} from 'react'
+import {Suspense, useState} from 'react'
 import cn from 'classnames'
 import {Navbar} from '~/components/layout/navbar/navbar'
 import {ButtonLink} from '~/components/button'
@@ -7,9 +7,20 @@ import {IconNavArrow} from '~/components/icons'
 import {MapList} from '~/components/layout/map'
 
 export default function SolicitantesRoute() {
+  const [type, setType] = useState('A+')
+  const [rating, setRating] = useState('')
+
+  const [coords, setCoords] = useState({})
+  const [bounds, setBounds] = useState(null)
+
+  const [donors, setDonors] = useState([])
+
+  const [autocomplete, setAutocomplete] = useState(null)
+
   const location = useLocation()
 
   let isSolicitantePage = location.pathname === '/solicitantes'
+  let isChatPage = location.pathname === '/solicitantes/chat'
   let content
 
   if (isSolicitantePage) {
@@ -26,11 +37,20 @@ export default function SolicitantesRoute() {
   let showSidebar = false
   let showTest = true
 
-  if (isSolicitantePage) {
+  if (isSolicitantePage || isChatPage) {
     hasColumns = true
     showSidebar = true
     showTest = false
   }
+
+  //const onLoad = (autoC: any) => setAutocomplete(autoC)
+
+  /*const onPlaceChanged = () => {
+    const lat = autocomplete.getDonor().geometry.location.lat()
+    const lng = autocomplete.getDonor().geometry.location.lng()
+
+    setCoords({lat, lng})
+  }*/
 
   return (
     <>
@@ -58,10 +78,10 @@ export default function SolicitantesRoute() {
             <div
               className={cn(
                 'w-full self-stretch',
-                isSolicitantePage && 'mt-[-1px] bg-wash'
+                isSolicitantePage && isChatPage && 'mt-[-1px] bg-wash'
               )}
             >
-              {!isSolicitantePage && (
+              {!isSolicitantePage && !isChatPage && (
                 <div className="mx-auto w-full px-5 pt-10 sm:px-12 md:px-12 md:pt-12 lg:pt-10">
                   {<hr className="mx-auto max-w-7xl border-border" />}
                   {showTest && (
