@@ -182,7 +182,7 @@ function Navbar({onPlaceChanged, onLoad}: any) {
               >
                 <IconSearch className="group-betterhover:hover:text-gray-70 mr-3 shrink-0 align-middle text-gray-30" />
                 <input
-                  className="w-full bg-transparent text-primary outline-none focus:outline-link"
+                  className="w-full bg-transparent text-primary outline-none"
                   placeholder="Buscar"
                 />
               </div>
