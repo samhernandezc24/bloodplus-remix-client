@@ -14,8 +14,6 @@ export default function SolicitantesSolicitudesRoute() {
         'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
       dateCreation: '24 de abril de 2023 a las 16:30',
       status: 'Enviada',
-      lastSeen: '3h ago',
-      lastSeenDateTime: '2023-01-23T13:23Z',
     },
     {
       name: 'Michael Foster',
@@ -25,8 +23,6 @@ export default function SolicitantesSolicitudesRoute() {
         'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
       dateCreation: '25 de abril de 2023 a las 12:30',
       status: 'Aceptada',
-      lastSeen: '3h ago',
-      lastSeenDateTime: '2023-01-23T13:23Z',
     },
     {
       name: 'Dries Vincent',
@@ -36,7 +32,6 @@ export default function SolicitantesSolicitudesRoute() {
         'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
       dateCreation: '25 de abril de 2023 a las 13:10',
       status: 'Enviada',
-      lastSeen: null,
     },
     {
       name: 'Lindsay Walton',
@@ -44,10 +39,8 @@ export default function SolicitantesSolicitudesRoute() {
       bloodType: 'A+',
       imageUrl:
         'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      lastSeen: '3h ago',
       dateCreation: '26 de abril de 2023 a las 12:45',
       status: 'Aceptada',
-      lastSeenDateTime: '2023-01-23T13:23Z',
     },
     {
       name: 'Courtney Henry',
@@ -56,9 +49,7 @@ export default function SolicitantesSolicitudesRoute() {
       imageUrl:
         'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
       dateCreation: '24 de abril de 2023 a las 15:30',
-      lastSeen: '3h ago',
       status: 'Rechazada',
-      lastSeenDateTime: '2023-01-23T13:23Z',
     },
     {
       name: 'Tom Cook',
@@ -68,7 +59,6 @@ export default function SolicitantesSolicitudesRoute() {
         'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
       dateCreation: '24 de abril de 2023 a las 8:00',
       status: 'Aceptada',
-      lastSeen: null,
     },
   ]
 
@@ -123,13 +113,22 @@ export default function SolicitantesSolicitudesRoute() {
                               Solicitud Enviada
                             </p>
                           </div>
-                        ) : (
+                        ) : person.status === 'Aceptada' ? (
                           <div className="mt-1 flex items-center gap-x-1.5">
                             <div className="flex-none rounded-full bg-emerald-500/20 p-1">
                               <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                             </div>
                             <p className="text-sm leading-5 text-secondary">
                               Solicitud Aceptada
+                            </p>
+                          </div>
+                        ) : (
+                          <div className="mt-1 flex items-center gap-x-1.5">
+                            <div className="flex-none rounded-full bg-red-500/20 p-1">
+                              <div className="h-1.5 w-1.5 rounded-full bg-red-500" />
+                            </div>
+                            <p className="text-sm leading-5 text-secondary">
+                              Solicitud Rechazada
                             </p>
                           </div>
                         )}

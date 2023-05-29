@@ -5,6 +5,7 @@ import {Navbar} from '~/components/layout/navbar/navbar'
 import {ButtonLink} from '~/components/button'
 import {IconNavArrow} from '~/components/icons'
 import {MapList} from '~/components/layout/map'
+import {ChatList} from '~/components/layout/chat'
 
 export default function SolicitantesRoute() {
   const [type, setType] = useState('A+')
@@ -59,13 +60,25 @@ export default function SolicitantesRoute() {
       <div
         className={cn(
           hasColumns &&
-            'grid grid-cols-only-content lg:grid-cols-sidebar-content'
+            isSolicitantePage &&
+            'grid grid-cols-only-content lg:grid-cols-sidebar-content',
+          hasColumns &&
+            isChatPage &&
+            'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc'
         )}
       >
-        {showSidebar && (
+        {showSidebar && isSolicitantePage && (
           <div className="lg:-mt-16">
             <div className="fixed left-0 right-0 top-0 py-0 shadow lg:sticky lg:pt-16 lg:shadow-none">
               <MapList />
+            </div>
+          </div>
+        )}
+
+        {showSidebar && isChatPage && (
+          <div className="lg:-mt-16">
+            <div className="fixed left-0 right-0 top-0 py-0 shadow lg:sticky lg:pt-16 lg:shadow-none">
+              <ChatList />
             </div>
           </div>
         )}

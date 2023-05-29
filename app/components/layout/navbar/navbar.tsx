@@ -177,12 +177,12 @@ function Navbar({onPlaceChanged, onLoad}: any) {
               {/*<Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>*/}
               <div
                 className={cn(
-                  'betterhover:hover:bg-opacity-80 pointer relative flex h-10 w-full items-center rounded-full bg-gray-30/20 py-1 pl-4 pr-1 text-left align-middle text-base text-gray-30 outline-none focus:outline-link 3xl:mx-0 3xl:w-[56rem]'
+                  'betterhover:hover:bg-opacity-80 pointer relative flex h-10 w-full items-center rounded-full bg-gray-30/20 py-1 pl-4 pr-1 text-left align-middle text-base text-gray-30 3xl:mx-0 3xl:w-[56rem]'
                 )}
               >
                 <IconSearch className="group-betterhover:hover:text-gray-70 mr-3 shrink-0 align-middle text-gray-30" />
                 <input
-                  className="w-full bg-transparent text-primary outline-none"
+                  className="w-full bg-transparent text-primary outline-none focus:outline-link"
                   placeholder="Buscar"
                 />
               </div>
