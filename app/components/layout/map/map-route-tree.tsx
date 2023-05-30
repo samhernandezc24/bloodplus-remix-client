@@ -80,7 +80,7 @@ export function MapRouteTree({level = 0}: MapRouteTreeProps) {
               <Grid item key={index} xs={12}>
                 <DonorDetails donor={donor} />
               </Grid>
-            ))}
+            ))} 
           </Grid>
         </div>
       </Fragment>

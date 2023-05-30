@@ -20,12 +20,16 @@ import {useNonce} from './utils/nonce-provider'
 import stylesUrl from '~/styles/tailwind.css'
 import {ButtonLink} from './components/button'
 import {NRHandle} from 'types'
+import { cssBundleHref } from '@remix-run/css-bundle'
 
 export const handle: NRHandle & {id: string} = {
   id: 'root',
 }
 
-export const links: LinksFunction = () => [{rel: 'stylesheet', href: stylesUrl}]
+export const links: LinksFunction = () => [
+  {rel: 'stylesheet', href: stylesUrl},
+  ...(cssBundleHref ? [{rel: 'stylesheet', href: cssBundleHref}] : [])
+]
 
 export const meta: V2_MetaFunction = () => {
   const title = 'BloodPlus: ¡Dona vida!'
