@@ -24,13 +24,13 @@ const DonorDetails = ({donor, selected}: any) => {
             readOnly
           />
           <Typography component="legend">
-            {donor.num_reviews} review{donor.num_reviews > 1 && 's'}
+            {donor.total_donations} donado{donor.total_donations > 1 && 's'}
           </Typography>
         </Box>
         <Box display="flex" justifyContent="space-between">
           <Typography component="legend">Tipo de Sangre:</Typography>
           <Typography gutterBottom variant="subtitle1">
-            {donor.blood_type}
+            {donor.blood.blood_type}
           </Typography>
         </Box>
         {donor.age && (

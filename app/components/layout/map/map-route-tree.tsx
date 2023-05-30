@@ -1,16 +1,30 @@
-import {Fragment, useState} from 'react'
+import {json} from '@remix-run/node'
+import {Fragment, useEffect, useState} from 'react'
+import {useLoaderData} from '@remix-run/react'
 import cn from 'classnames'
 import {Grid, InputLabel, FormControl, MenuItem, Select} from '@mui/material'
 import DonorDetails from '~/components/donor-details'
+import axios from 'axios'
 
 interface MapRouteTreeProps {
   level?: number
 }
 
+export const loader = async () => {
+  const response = await axios.get(
+    'http://127.0.0.1:8000/api/v1/usuarios/?role=DONADOR'
+  )
+  const donorListItems = await response.data
+  return json({donorListItems})
+}
+
 export function MapRouteTree({level = 0}: MapRouteTreeProps) {
+  const data = useLoaderData<typeof loader>()
   const [type, setType] = useState('1')
   const [rating, setRating] = useState('')
-  const donors = [
+  const [donors, setDonors] = useState([])
+
+  /*const donors = [
     {
       first_name: 'Juan',
       last_name: 'Solano',
@@ -36,7 +50,19 @@ export function MapRouteTree({level = 0}: MapRouteTreeProps) {
       num_reviews: 1,
       age: 25,
     },
-  ]
+  ]*/
+
+  useEffect(() => {
+    const fetchDonors = async () => {
+      const response = await axios.get(
+        'http://127.0.0.1:8000/api/v1/usuarios/?role=DONADOR'
+      )
+      const donorsData = response.data
+      setDonors(donorsData)
+    }
+
+    fetchDonors()
+  }, [])
 
   return (
     <ul>
@@ -80,7 +106,7 @@ export function MapRouteTree({level = 0}: MapRouteTreeProps) {
               <Grid item key={index} xs={12}>
                 <DonorDetails donor={donor} />
               </Grid>
-            ))} 
+            ))}
           </Grid>
         </div>
       </Fragment>
