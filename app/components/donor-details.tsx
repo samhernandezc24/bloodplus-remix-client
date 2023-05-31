@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   Box,
   Typography,
@@ -9,7 +10,31 @@ import {
 } from '@mui/material'
 import {Phone, LocationOn} from '@mui/icons-material'
 
-const DonorDetails = ({donor, selected}: any) => {
+interface DonorDetailsProps {
+  donor: any
+  selected: boolean
+  refProp?: React.RefObject<HTMLDivElement>
+}
+
+const DonorDetails = ({donor, selected, refProp}: DonorDetailsProps) => {
+  if (selected)
+    refProp?.current?.scrollIntoView({behavior: 'smooth', block: 'start'})
+
+  const calculateAge = (dateOfBirth: string): number => {
+    const today = new Date()
+    const birthDate = new Date(dateOfBirth)
+    let age = today.getFullYear() - birthDate.getFullYear()
+    const monthDifference = today.getMonth() - birthDate.getMonth()
+
+    if (
+      monthDifference < 0 ||
+      (monthDifference === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--
+    }
+    return age
+  }
+
   return (
     <Card elevation={6}>
       <CardContent>
@@ -33,9 +58,9 @@ const DonorDetails = ({donor, selected}: any) => {
             {donor.blood.blood_type}
           </Typography>
         </Box>
-        {donor.age && (
+        {donor.date_of_birth && (
           <Typography variant="body2" color="textSecondary" marginBottom={2}>
-            Edad: {donor.age}
+            Edad: {calculateAge(donor.date_of_birth)} años
           </Typography>
         )}
         {donor.address && (
@@ -54,7 +79,7 @@ const DonorDetails = ({donor, selected}: any) => {
         <Button
           size="small"
           color="secondary"
-          onClick={() => window.open(donor.request_uri, '_blank')}
+          onClick={() => window.open('/solicitantes/solicitudes', '_blank')}
         >
           Enviar Solicitud
         </Button>

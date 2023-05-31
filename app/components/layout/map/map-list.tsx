@@ -1,10 +1,45 @@
-import {Suspense} from 'react'
+import axios from 'axios'
+import {Suspense, useEffect, useState} from 'react'
 import cn from 'classnames'
 import {MapRouteTree} from './map-route-tree'
+import {getDonorsData} from '~/api/bloodPlusAPI'
 
-interface MapListProps {}
+export function MapList() {
+  const [type, setType] = useState('1')
+  const [rating, setRating] = useState('')
 
-export function MapList({}: MapListProps) {
+  const [filteredDonors, setFilteredDonors] = useState([])
+  const [donors, setDonors] = useState([])
+
+  const [childClicked, setChildClicked] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const filtered = donors.filter(
+      donor => Number(donor.average_rating) > rating
+    )
+
+    setFilteredDonors(filtered)
+  }, [rating])
+
+  useEffect(() => {
+    setIsLoading(true)
+
+    const fetchDonors = async () => {
+      try {
+        const res = await axios.get(
+          'http://127.0.0.1:8000/api/v1/usuarios/?role=DONADOR'
+        )
+        const donorsData = res.data
+        setDonors(donorsData)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchDonors()
+  }, [])
+
   return (
     <div
       className={cn(
@@ -27,7 +62,14 @@ export function MapList({}: MapListProps) {
           >
             {/* No hay fallback UI por lo que hay que tener cuidado de no suspender directamente dentro. */}
             <Suspense fallback={null}>
-              <MapRouteTree />
+              <MapRouteTree
+                childClicked={childClicked}
+                donors={donors}
+                type={type}
+                setType={setType}
+                rating={rating}
+                setRating={setRating}
+              />
             </Suspense>
             <div className="h-20" />
           </nav>
