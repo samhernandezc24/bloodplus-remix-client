@@ -82,26 +82,6 @@ export const IconSearch = memo<JSX.IntrinsicElements['svg']>(
   }
 )
 
-/**
- * 
- <svg width="1em" height="1em" viewBox="0 0 24 24" {...props}>
-        <path
-          fill="none"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.5}
-          d="M12 18.25c3.5 0 7.25-1.75 7.25-6.25S15.5 5.75 12 5.75 4.75 7.5 4.75 12c0 1.03.196 1.916.541 2.67.215.47.336.987.24 1.495l-.262 1.399a1 1 0 001.168 1.167l3.207-.602a2.24 2.24 0 01.764-.003c.527.084 1.062.124 1.592.124z"
-        />
-        <path
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M9.5 12a.5.5 0 11-1 0 .5.5 0 011 0zM12.5 12a.5.5 0 11-1 0 .5.5 0 011 0zM15.5 12a.5.5 0 11-1 0 .5.5 0 011 0z"
-        />
-      </svg>
- */
-
 export const IconMessage = memo<JSX.IntrinsicElements['svg']>(
   function IconMessage(props) {
     return (
@@ -203,9 +183,46 @@ export const IconChevron = memo<
     <svg
       className={classes}
       xmlns="http://www.w3.org/2000/svg"
+      width="25"
+      height="25"
+      viewBox="0 0 20 20"
+    >
+      <g fill="none" fillRule="evenodd" transform="translate(-446 -398)">
+        <path
+          fill="currentColor"
+          fillRule="nonzero"
+          d="M95.8838835,240.366117 C95.3957281,239.877961 94.6042719,239.877961 94.1161165,240.366117 C93.6279612,240.854272 93.6279612,241.645728 94.1161165,242.133883 L98.6161165,246.633883 C99.1042719,247.122039 99.8957281,247.122039 100.383883,246.633883 L104.883883,242.133883 C105.372039,241.645728 105.372039,240.854272 104.883883,240.366117 C104.395728,239.877961 103.604272,239.877961 103.116117,240.366117 L99.5,243.982233 L95.8838835,240.366117 Z"
+          transform="translate(356.5 164.5)"
+        />
+        <polygon points="446 418 466 418 466 398 446 398" />
+      </g>
+    </svg>
+  )
+})
+
+export const IconNavArrow = memo<
+  JSX.IntrinsicElements['svg'] & {
+    displayDirection: 'right' | 'down' | 'left'
+  }
+>(function IconNavArrow({displayDirection = 'right', className}) {
+  const classes = cn(
+    'duration-100 ease-in transition',
+    {
+      'rotate-0': displayDirection === 'down',
+      '-rotate-90': displayDirection === 'right',
+      'rotate-90': displayDirection === 'left',
+    },
+    className
+  )
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
       width="20"
       height="20"
       viewBox="0 0 20 20"
+      className={classes}
+      style={{minWidth: 20, minHeight: 20}}
     >
       <g fill="none" fillRule="evenodd" transform="translate(-446 -398)">
         <path

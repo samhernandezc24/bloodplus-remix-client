@@ -28,8 +28,9 @@ export default function PreciosRoute() {
                   <div className="ml-0 max-w-4xl 2xl:mx-auto">
                     <div className="text-xl leading-relaxed text-primary">
                       <p className="my-4 whitespace-pre-wrap">
-                        Desde 5 solicitudes. Todas las cuentas de solicitante de
-                        donador incluye uso de la búsqueda optimizada por mapas.
+                        Desde una sola solicitud. Todas las cuentas de
+                        solicitante de donador incluye uso de la búsqueda
+                        optimizada por mapas.
                       </p>
                       <p className="my-4 whitespace-pre-wrap">
                         Si te suscribes a un plan de BloodPlus, aceptas las
@@ -49,31 +50,27 @@ export default function PreciosRoute() {
                       <div className="space-y-8 sm:gap-6 lg:grid lg:grid-cols-3 lg:space-y-0 xl:gap-10">
                         <div className="mx-auto flex max-w-lg flex-col rounded-lg border border-border p-6 text-center text-secondary shadow">
                           <h3 className="mb-4 text-2xl font-semibold">
-                            Plan Básico
+                            Plan Individual
                           </h3>
                           <p className="text-secondary sm:text-lg">
                             Elige esta opción para uso personal.
                           </p>
                           <div className="my-8 flex items-baseline justify-center">
-                            <span className="mr-2 text-5xl font-bold">$32</span>
+                            <span className="mr-2 text-5xl font-bold">$10</span>
                             <span className="text-secondary">/mensual</span>
                           </div>
                           <ul role="list" className="mb-8 space-y-4 text-left">
                             <li className="flex items-center space-x-3">
                               <IconCheck className="h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
-                              <span>Configuración inicial</span>
+                              <span>1 solicitud de donación</span>
                             </li>
                             <li className="flex items-center space-x-3">
                               <IconCheck className="h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
-                              <span>Configuración inicial</span>
+                              <span>Chat disponible</span>
                             </li>
                             <li className="flex items-center space-x-3">
                               <IconCheck className="h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
-                              <span>Configuración inicial</span>
-                            </li>
-                            <li className="flex items-center space-x-3">
-                              <IconCheck className="h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
-                              <span>Configuración inicial</span>
+                              <span>Ayuda y soporte</span>
                             </li>
                           </ul>
                           <Button
@@ -85,35 +82,31 @@ export default function PreciosRoute() {
                         </div>
                         <div className="mx-auto flex max-w-lg flex-col rounded-lg border border-border p-6 text-center text-secondary shadow">
                           <h3 className="mb-4 text-2xl font-semibold">
-                            Plan Especial
+                            Plan Estándar
                           </h3>
                           <p className="text-secondary sm:text-lg">
                             Elige esta opción para uso personal.
                           </p>
                           <div className="my-8 flex items-baseline justify-center">
-                            <span className="mr-2 text-5xl font-bold">$32</span>
+                            <span className="mr-2 text-5xl font-bold">$30</span>
                             <span className="text-secondary">/mensual</span>
                           </div>
                           <ul role="list" className="mb-8 space-y-4 text-left">
                             <li className="flex items-center space-x-3">
                               <IconCheck className="h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
-                              <span>Configuración inicial</span>
+                              <span>3 solicitudes de donación</span>
                             </li>
                             <li className="flex items-center space-x-3">
                               <IconCheck className="h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
-                              <span>Configuración inicial</span>
+                              <span>Chat disponible</span>
                             </li>
                             <li className="flex items-center space-x-3">
                               <IconCheck className="h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
-                              <span>Configuración inicial</span>
-                            </li>
-                            <li className="flex items-center space-x-3">
-                              <IconCheck className="h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
-                              <span>Configuración inicial</span>
+                              <span>Ayuda y soporte</span>
                             </li>
                           </ul>
                           <ButtonLink
-                            href="/"
+                            href="/acceso"
                             className="justify-center"
                             type="primary"
                             size="md"
@@ -129,25 +122,23 @@ export default function PreciosRoute() {
                             Elige esta opción para uso personal.
                           </p>
                           <div className="my-8 flex items-baseline justify-center">
-                            <span className="mr-2 text-5xl font-bold">$32</span>
+                            <span className="mr-2 text-5xl font-bold">
+                              $100
+                            </span>
                             <span className="text-secondary">/mensual</span>
                           </div>
                           <ul role="list" className="mb-8 space-y-4 text-left">
                             <li className="flex items-center space-x-3">
                               <IconCheck className="h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
-                              <span>Configuración inicial</span>
+                              <span>10 solicitudes de donación</span>
                             </li>
                             <li className="flex items-center space-x-3">
                               <IconCheck className="h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
-                              <span>Configuración inicial</span>
+                              <span>Chat disponible</span>
                             </li>
                             <li className="flex items-center space-x-3">
                               <IconCheck className="h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
-                              <span>Configuración inicial</span>
-                            </li>
-                            <li className="flex items-center space-x-3">
-                              <IconCheck className="h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
-                              <span>Configuración inicial</span>
+                              <span>Ayuda y soporte</span>
                             </li>
                           </ul>
                           <Button

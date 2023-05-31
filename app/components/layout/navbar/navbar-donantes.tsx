@@ -11,14 +11,13 @@ import {
   IconSearch,
   IconUser,
 } from '~/components/icons'
-import {Autocomplete} from '@react-google-maps/api'
 
 const LINKS = [
-  {name: 'Precios', to: '/solicitantes/precios'},
-  {name: 'Ayuda', to: '/solicitantes/ayuda'},
+  {name: 'Guía', to: '/donantes/guia'},
+  {name: 'Ayuda', to: '/donantes/ayuda'},
 ]
 
-const MOBILE_LINKS = [{name: 'Inicio', to: '/solicitantes'}, ...LINKS]
+const MOBILE_LINKS = [{name: 'Inicio', to: '/donantes'}, ...LINKS]
 
 function NavLink({
   to,
@@ -71,7 +70,7 @@ function NavLinkIcon({
   )
 }
 
-export function Navbar({onPlaceChanged, onLoad}: any) {
+export function NavbarDonantes() {
   const [isOpen, setIsOpen] = useState(false)
   const scrollParentRef = useRef<HTMLDivElement>(null)
   const navigation = useNavigation()
@@ -161,7 +160,7 @@ export function Navbar({onPlaceChanged, onLoad}: any) {
               </button>
               <div className="flex self-center 3xl:flex-1">
                 <Link
-                  to="/solicitantes"
+                  to="/donantes"
                   className={`relative inline-flex items-center gap-2 overflow-hidden whitespace-nowrap rounded-full p-1 text-lg font-normal text-primary outline-link transition-transform active:scale-95 3xl:rounded-xl`}
                 >
                   <img
@@ -173,21 +172,7 @@ export function Navbar({onPlaceChanged, onLoad}: any) {
                 </Link>
               </div>
             </div>
-            <div className="hidden w-full flex-1 items-center justify-center md:flex 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
-              {/*<Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>*/}
-              <div
-                className={cn(
-                  'betterhover:hover:bg-opacity-80 pointer relative flex h-10 w-full items-center rounded-full bg-gray-30/20 py-1 pl-4 pr-1 text-left align-middle text-base text-gray-30 3xl:mx-0 3xl:w-[56rem]'
-                )}
-              >
-                <IconSearch className="group-betterhover:hover:text-gray-70 mr-3 shrink-0 align-middle text-gray-30" />
-                <input
-                  className="w-full bg-transparent text-primary outline-none"
-                  placeholder="Buscar"
-                />
-              </div>
-              {/*</Autocomplete>*/}
-            </div>
+            <div className="hidden w-full flex-1 items-center justify-center md:flex 3xl:w-auto 3xl:shrink-0 3xl:justify-center" />
             <div className="flex flex-row items-center justify-center gap-1.5 text-base 3xl:flex-1 3xl:justify-end">
               <div className="mx-2.5 hidden gap-1.5 lg:flex">
                 {LINKS.map(link => (
@@ -198,27 +183,18 @@ export function Navbar({onPlaceChanged, onLoad}: any) {
               </div>
               <div className="flex w-full md:hidden" />
               <div className="flex items-center -space-x-2.5 xs:space-x-0">
-                <div className="flex md:hidden">
-                  <button
-                    aria-label="Buscar"
-                    type="button"
-                    className="flex h-12 w-12 items-center justify-center rounded-full outline-link transition-transform hover:bg-secondary-button active:scale-95 md:hidden"
-                  >
-                    <IconSearch className="h-5 w-5 align-middle" />
-                  </button>
-                </div>
                 <div className="flex">
-                  <NavLinkIcon to="/solicitantes/chat">
+                  <NavLinkIcon to="/donantes/chat">
                     <IconMessage />
                   </NavLinkIcon>
                 </div>
                 <div className="flex">
-                  <NavLinkIcon to="/solicitantes/solicitudes">
+                  <NavLinkIcon to="/donantes/solicitudes">
                     <IconNote />
                   </NavLinkIcon>
                 </div>
                 <div className="flex">
-                  <NavLinkIcon to="/solicitantes/me">
+                  <NavLinkIcon to="/donantes/me">
                     <IconUser />
                   </NavLinkIcon>
                 </div>
@@ -264,7 +240,7 @@ export function Navbar({onPlaceChanged, onLoad}: any) {
                         title="Mi Perfil"
                         target=""
                         className="relative flex w-full items-center justify-between rounded-none p-2 pl-5 pr-2 text-left text-base font-bold text-primary hover:bg-gray-5 lg:rounded-r-2xl"
-                        to="/solicitantes/me"
+                        to="/donantes/me"
                       >
                         <span className="">Mi Perfil</span>
                       </Link>
