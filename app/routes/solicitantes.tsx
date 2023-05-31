@@ -6,8 +6,6 @@ import {ButtonLink} from '~/components/button'
 import {IconNavArrow} from '~/components/icons'
 import {MapList} from '~/components/layout/map'
 import {ChatList} from '~/components/layout/chat'
-import { requireUserSession } from '~/session'
-import { LoaderArgs } from '@remix-run/node'
 
 export default function SolicitantesRoute() {
   const [type, setType] = useState('A+')

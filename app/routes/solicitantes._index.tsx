@@ -6,8 +6,9 @@ export default function SolicitantesIndexRoute() {
       lat: 18.023183714063215,
       lng: -92.90362957485125,
     },
-    zoom: 12,
+    zoom: 14,
   }
+
   return (
     <div className="px-0 lg:px-4">
       {/** Importante Ajuste siempre explícitamente la altura del contenedor */}

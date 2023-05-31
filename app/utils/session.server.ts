@@ -1,5 +1,5 @@
-import axios from 'axios'
 import {createCookieSessionStorage, redirect} from '@remix-run/node'
+import axios from 'axios'
 
 type LoginForm = {
   password: string
@@ -9,24 +9,29 @@ type LoginForm = {
 export async function login({password, email}: LoginForm) {
   try {
     const response = await axios.post('http://127.0.0.1:8000/api/v1/token/', {
-      email,
-      password,
+      email: email,
+      password: password,
     })
 
-    const token = response.data.access
-
-    const session = await getUserSession()
-    session.set('token', token)
-    await storage.commitSession(session)
+    if (response.status === 200) {
+      const token = response.data.access
+      return token
+    } else {
+      console.error('Estado de respuesta inesperado:', response.status)
+      return null
+    }
   } catch (error: any) {
-    console.error('Error de inicio de sesión:', error)
-    throw new Error('Error de inicio de sesión')
+    console.error(
+      'Error al iniciar sesión:',
+      error?.response.data || error.message
+    )
+    return null
   }
 }
 
-const sessionSecret = process.env.SESSION_SECRET
+const sessionSecret = process.env.SESSION_SECRET || 'secreto^_~'
 if (!sessionSecret) {
-  throw new Error('SESSION_SECRET debe ser definida')
+  throw new Error('SESSION_SECRET debe ser definido.')
 }
 
 const storage = createCookieSessionStorage({
@@ -44,8 +49,58 @@ const storage = createCookieSessionStorage({
   },
 })
 
-function getUserSession(request?: Request) {
-  return storage.getSession(request?.headers.get('Cookie'))
+function getUserSession(request: Request) {
+  return storage.getSession(request.headers.get('Cookie'))
+}
+
+export async function getUserId(request: Request) {
+  const session = await getUserSession(request)
+  const userId = session.get('userId')
+  if (!userId || typeof userId !== 'string') {
+    return null
+  }
+  return userId
+}
+
+export async function requiresUserId(
+  request: Request,
+  redirectTo: string = new URL(request.url).pathname
+) {
+  const session = await getUserSession(request)
+  const userId = session.get('userId')
+  if (!userId || typeof userId !== 'string') {
+    const searchParams = new URLSearchParams([['redirectTo', redirectTo]])
+    throw redirect(`/acceso?${searchParams}`)
+  }
+  return userId
+}
+
+export async function getUser(request: Request) {
+  const token = await getUserId(request)
+  if (typeof token !== 'string') {
+    return null
+  }
+
+  try {
+    // get an specific user
+    const userId = 23
+    const response = await axios.get(
+      `http://127.0.0.1:8000/api/v1/usuarios/${userId}/`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    if (response.status === 200) {
+      const user = response.data
+      return user
+    } else {
+      throw new Error('Error al recuperar el usuario')
+    }
+  } catch (error) {
+    throw logout(request)
+  }
 }
 
 export async function logout(request: Request) {
@@ -53,6 +108,16 @@ export async function logout(request: Request) {
   return redirect('/acceso', {
     headers: {
       'Set-Cookie': await storage.destroySession(session),
+    },
+  })
+}
+
+export async function createUserSession(token: string, redirectTo: string) {
+  const session = await storage.getSession()
+  session.set('access_token', token)
+  return redirect(redirectTo, {
+    headers: {
+      'Set-Cookie': await storage.commitSession(session),
     },
   })
 }

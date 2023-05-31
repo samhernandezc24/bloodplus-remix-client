@@ -1,9 +1,4 @@
-import type {
-  DataFunctionArgs,
-  LinksFunction,
-  SerializeFrom,
-  V2_MetaFunction,
-} from '@remix-run/node'
+import type {LinksFunction, V2_MetaFunction} from '@remix-run/node'
 import {
   Links,
   LiveReload,
@@ -16,19 +11,13 @@ import {
   useRouteError,
 } from '@remix-run/react'
 
-import {useNonce} from './utils/nonce-provider'
 import stylesUrl from '~/styles/tailwind.css'
 import {ButtonLink} from './components/button'
-import {NRHandle} from 'types'
-import { cssBundleHref } from '@remix-run/css-bundle'
-
-export const handle: NRHandle & {id: string} = {
-  id: 'root',
-}
+import {cssBundleHref} from '@remix-run/css-bundle'
 
 export const links: LinksFunction = () => [
   {rel: 'stylesheet', href: stylesUrl},
-  ...(cssBundleHref ? [{rel: 'stylesheet', href: cssBundleHref}] : [])
+  ...(cssBundleHref ? [{rel: 'stylesheet', href: cssBundleHref}] : []),
 ]
 
 export const meta: V2_MetaFunction = () => {
@@ -49,15 +38,7 @@ export const meta: V2_MetaFunction = () => {
   ]
 }
 
-export type LoaderData = SerializeFrom<typeof loader>
-
-async function loader({request}: DataFunctionArgs) {
-  const timings = {}
-  //const session = await getSession(request)
-}
-
 export default function App() {
-  const nonce = useNonce()
   return (
     <html className="h-full" lang="en">
       <head>
@@ -67,16 +48,15 @@ export default function App() {
       </head>
       <body className="bg-wash font-text text-lg font-medium leading-base text-secondary antialiased">
         <Outlet />
-        <ScrollRestoration nonce={nonce} />
-        <Scripts nonce={nonce} />
-        <LiveReload nonce={nonce} />
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
       </body>
     </html>
   )
 }
 
 function ErrorDoc({children}: {children: React.ReactNode}) {
-  const nonce = useNonce()
   return (
     <html className="h-full" lang="en">
       <head>
@@ -87,7 +67,7 @@ function ErrorDoc({children}: {children: React.ReactNode}) {
       </head>
       <body className="bg-wash font-text text-lg font-medium leading-base text-secondary antialiased">
         {children}
-        <Scripts nonce={nonce} />
+        <Scripts />
       </body>
     </html>
   )

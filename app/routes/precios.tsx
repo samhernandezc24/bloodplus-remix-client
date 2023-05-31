@@ -106,7 +106,7 @@ export default function PreciosRoute() {
                             </li>
                           </ul>
                           <ButtonLink
-                            href="/"
+                            href="/acceso"
                             className="justify-center"
                             type="primary"
                             size="md"
